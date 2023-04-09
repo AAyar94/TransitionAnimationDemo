@@ -6,24 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".FirstContentFragment">
 
-    <ImageView
-        android:transitionName="imageT"
-        android:id="@+id/imageFirst"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
-
-    <Button
-        android:id="@+id/buttonA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="go to fragment b"
-        app:layout_constraintEnd_toEndOf="@id/imageFirst"
-        app:layout_constraintStart_toStartOf="@id/imageFirst"
-        app:layout_constraintTop_toBottomOf="@id/imageFirst" />
+        app:spanCount="2"
+        tools:itemCount="10"
+        tools:listitem="@layout/row_layout_recycler_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

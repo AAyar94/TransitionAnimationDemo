@@ -14,6 +14,15 @@ import com.bumptech.glide.Glide
 class FirstContentFragment : Fragment() {
     private var _binding: FragmentFirstContentBinding? = null
     private val binding get() = _binding!!
+    private val adapter: PhotosAdapter by lazy {
+        PhotosAdapter { link, extra ->
+            val action =
+                FirstContentFragmentDirections.actionFirstContentFragmentToSecondContentFragment(
+                    link
+                )
+            findNavController().navigate(action, extra)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,23 +31,14 @@ class FirstContentFragment : Fragment() {
         _binding = FragmentFirstContentBinding.inflate(layoutInflater, container, false)
 
         val string = "https://picsum.photos/200"
-
-        Glide.with(binding.root.context)
-            .load(string)
-            .into(binding.imageFirst)
-
-        //binding.imageFirst.setImageResource(R.drawable.baseline_android_24)
-
-        binding.buttonA.setOnClickListener {
-            val action =
-                FirstContentFragmentDirections.actionFirstContentFragmentToSecondContentFragment(
-                    string
-                )
-            val extra = FragmentNavigatorExtras(
-                binding.imageFirst to "imageT"
-            )
-            findNavController().navigate(action, extra)
+        var dataSet: MutableList<String> = mutableListOf()
+        for (i in 0 until 20) {
+            dataSet.add(string)
         }
+        adapter.setData(dataSet)
+
+        binding.recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
 
         return binding.root
     }
