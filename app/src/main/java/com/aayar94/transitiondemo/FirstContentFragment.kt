@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.aayar94.transitiondemo.databinding.FragmentFirstContentBinding
@@ -36,8 +37,11 @@ class FirstContentFragment : Fragment() {
             dataSet.add(string)
         }
         adapter.setData(dataSet)
-
         binding.recyclerView.adapter = adapter
+        postponeEnterTransition()
+        binding.recyclerView.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
         adapter.notifyDataSetChanged()
 
         return binding.root
