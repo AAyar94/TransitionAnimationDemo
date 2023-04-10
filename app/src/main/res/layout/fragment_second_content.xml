@@ -8,9 +8,10 @@
 
     <ImageView
         android:id="@+id/imageSecond"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:transitionName="imageT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,8 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="go to fragment b"
-        app:layout_constraintEnd_toEndOf="@id/imageSecond"
-        app:layout_constraintStart_toStartOf="@id/imageSecond"
-        app:layout_constraintTop_toBottomOf="@id/imageSecond" />
+        app:layout_constraintBottom_toBottomOf="@id/imageSecond"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
